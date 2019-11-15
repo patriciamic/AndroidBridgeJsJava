@@ -6,7 +6,6 @@
     tools:context=".MainActivity"
     android:background="#90A4AE">
 
-
     <Button
         android:id="@+id/btn_start"
         android:layout_width="200sp"

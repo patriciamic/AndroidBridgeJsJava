@@ -10,11 +10,10 @@ import android.util.Log;
 public class AccelerometerSensor implements SensorEventListener {
 
     private SensorManager sensorManager;
-    private Sensor sensor;
     private Context context;
     private AccelerometerSensorChangedListener listener;
 
-    public AccelerometerSensor(Context context){
+    AccelerometerSensor(Context context){
         this.context = context;
         setSettings();
     }
@@ -22,16 +21,18 @@ public class AccelerometerSensor implements SensorEventListener {
     private void setSettings()
     {
         sensorManager = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
-        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        assert sensorManager != null;
+        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         if (sensor == null)
         {
             Log.e("ACCELEROMETER SENSOR", "not found");
             return;
         }
+        Log.e("ACCELEROMETER SENSOR", "found");
         sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_GAME);
     }
 
-    public void setListener(AccelerometerSensorChangedListener listener){
+    void setListener(AccelerometerSensorChangedListener listener){
         this.listener = listener;
     }
 
@@ -43,7 +44,7 @@ public class AccelerometerSensor implements SensorEventListener {
         }
         catch (Exception ex)
         {
-            Log.e("GYRO SENSOR Error", ex.getMessage());
+            Log.e("ACCELEROMETER SENSOR", ex.getMessage());
         }
     }
 
@@ -52,11 +53,10 @@ public class AccelerometerSensor implements SensorEventListener {
 
     }
 
-     public void close(){
+     void close(){
         Log.e("ACCELEROMETER SENSOR", "sensor unregistered");
         sensorManager.unregisterListener(this);
      }
-
 
     public interface AccelerometerSensorChangedListener
     {

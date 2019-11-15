@@ -26,13 +26,15 @@ public class GameActivity extends AppCompatActivity implements AccelerometerSens
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         setContentView(R.layout.activity_game);
 
         rlGame = findViewById(R.id.rl_game);
         webView = findViewById(R.id.wv_game);
-        webView.setWebChromeClient(new WebChromeClient() {});
+        webView.setWebChromeClient(new WebChromeClient(){});
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
@@ -42,11 +44,7 @@ public class GameActivity extends AppCompatActivity implements AccelerometerSens
         sensor = new AccelerometerSensor(this);
         sensor.setListener(this);
 
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-//        getSupportActionBar().hide();
+        getSupportActionBar().hide();
     }
 
     @Override
@@ -67,17 +65,15 @@ public class GameActivity extends AppCompatActivity implements AccelerometerSens
 
         private Context context;
 
-        public WebViewJavascriptInterface(Context _context) {
+        WebViewJavascriptInterface(Context _context) {
             context = _context;
         }
-
 
         @JavascriptInterface
         public void receiveMessageFromJS(String message)
         {
             Log.e("JavascriptInterface", "receiving from html.." + message);
         }
-
 
         @JavascriptInterface
         public String getFromAndroid()
@@ -93,11 +89,10 @@ public class GameActivity extends AppCompatActivity implements AccelerometerSens
         }
 
         @JavascriptInterface
-        public String getXYFromGyro()
+        public String getXYFromSensor()
         {
             return ((GameActivity) context).rotationOY + "/" + ((GameActivity)context).rotationOX + "/" + ((GameActivity)context).rotationOZ;
         }
-
     }
 }
 
