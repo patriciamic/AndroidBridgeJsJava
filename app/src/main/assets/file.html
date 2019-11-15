@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <title>JSCommunicator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.5/ol.css">
+</head>
+
+<body>
+
+<button onclick="sendMessage();">Click</button>
+
+<!--<div id="map" class="map"></div>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.5/ol.js"></script>-->
+
+
+
+<input type="button" value="Get from android" onClick="getFromAndroid()" />
+<script type="text/javascript">
+    var myVar = null;
+    function getFromAndroid() {
+        myVar = myOwnJSHandler.getFromAndroid();
+        alert(myVar);
+    }
+</script>
+
+<script src="file.js"></script>
+</body>
+
+
+</html>

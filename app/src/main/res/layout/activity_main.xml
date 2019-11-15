@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#90A4AE">
+
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="200sp"
+        android:layout_height="200dp"
+        android:text="Start"
+        android:textSize="30dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:background="@color/colorPrimary"
+        android:layout_centerInParent="true"
+        />
+
+</RelativeLayout>
